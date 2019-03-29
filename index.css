@@ -1,0 +1,23 @@
+.list-item {
+    display: inline-block;
+    margin-right: 10px;
+}
+.list-enter-active,
+.list-leave-active {
+    transition: all 0.5s;
+}
+.list-enter {
+    opacity: 0;
+    transform: translateX(30px);
+}
+.list-leave-to {
+    opacity: 0;
+    transform: translateX(-30px);
+}
+.todo-item {
+    background-color: blue;
+}
+#list-demo {
+    margin: auto;
+    width: 50%;
+}
