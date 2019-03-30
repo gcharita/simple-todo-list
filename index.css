@@ -1,9 +1,21 @@
+html {
+    height: 100%;
+}
+body {
+    margin: 0;
+    background-image: linear-gradient(to bottom right, yellow, lightgreen, lightblue);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+}
 #todo-list-container {
     margin: auto;
     width: 40%;
 }
 .add-button {
     background-image: url("images/baseline-add-24px.svg");
+    background-color: transparent;
+    border-color: transparent;
     background-size: 100%;
     float: right;
     border-radius: 0px;
@@ -26,5 +38,5 @@
     transform: translateX(-30px);
 }
 .todo-list-item {
-    background-color: blue;
+    font-size: 30px;
 }
