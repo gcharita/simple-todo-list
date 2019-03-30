@@ -1,6 +1,6 @@
 window.onload = function() {
     new Vue({
-        el: "#list-demo",
+        el: "#todo-list-container",
         data: {
             items: [
                 {

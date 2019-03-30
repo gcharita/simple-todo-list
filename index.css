@@ -1,23 +1,22 @@
-.list-item {
-    display: inline-block;
-    margin-right: 10px;
+#todo-list-container {
+    margin: auto;
+    width: 50%;
 }
-.list-enter-active,
-.list-leave-active {
+.todo-list {
+    list-style-type: none;
+}
+.todo-list-enter-active,
+.todo-list-leave-active {
     transition: all 0.5s;
 }
-.list-enter {
+.todo-list-enter {
     opacity: 0;
     transform: translateX(30px);
 }
-.list-leave-to {
+.todo-list-leave-to {
     opacity: 0;
     transform: translateX(-30px);
 }
-.todo-item {
+.todo-list-item {
     background-color: blue;
-}
-#list-demo {
-    margin: auto;
-    width: 50%;
 }
