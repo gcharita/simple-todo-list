@@ -1,6 +1,20 @@
 <head>
     <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- template for the modal component -->
+    <script type="text/x-template" id="modal-template">
+        <transition name="modal">
+          <div class="modal-mask">
+            <div class="modal-wrapper">
+              <div class="modal-container">
+                  <slot name="model-content">
+                    default content
+                  </slot>
+              </div>
+            </div>
+          </div>
+        </transition>
+    </script>
 
     <link
         rel="stylesheet"
@@ -12,24 +26,50 @@
     <script src="index.js"></script>
     <link rel="stylesheet" type="text/css" href="index.css" />
     <link rel="stylesheet" type="text/css" href="custom-checkbox.css" />
+    <link rel="stylesheet" type="text/css" href="modal-template.css" />
 </head>
 
 <body>
     <div id="todo-list-container">
-        <button type="button" class="btn btn-light add-button" v-on:click="add"></button><br /><br /><br />
+        <button type="button" class="btn btn-light add-button" @click="showModal = true"></button><br /><br /><br />
+
+        <!-- use the modal component, pass in the prop -->
+        <modal v-if="showModal" @close="showModal = false">
+            <!--
+                you can use custom content here to overwrite
+                default content
+            -->
+            <div slot="model-content">
+                <form id="todo=item-form" @submit.prevent="addTodo">
+                    <h3>Create todo</h3>
+                    <div class="field">
+                        <label class="label">Title</label><br />
+                        <input type="text" class="input" name="name" v-model="newTodo" />
+                    </div>
+                    <div class="field">
+                        <label class="label">Description</label><br />
+                        <input type="text" class="input" name="email" v-model="newTodoDescription" />
+                    </div>
+                    <div class="field has-text-right">
+                        <button type="submit" class="button is-danger">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </modal>
+
         <!-- <button v-on:click="remove">Remove</button> -->
         <transition-group name="todo-list" tag="ul" class="todo-list">
             <li v-for="item in items" v-bind:key="item.id" class="todo-list-item">
                 <span v-if="item.done">
                     <label class="checkbox-container">
-                        <del> {{ item.label }}</del>
+                        <del> {{ item.title }}</del>
                         <input type="checkbox" v-on:click="setDone(item)" checked="checked" />
                         <span class="checkmark"></span>
                     </label>
                 </span>
                 <span v-else>
                     <label class="checkbox-container">
-                        {{ item.label }}
+                        {{ item.title }}
                         <input type="checkbox" v-on:click="setDone(item)" />
                         <span class="checkmark"></span>
                     </label>

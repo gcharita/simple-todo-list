@@ -1,14 +1,19 @@
 window.onload = function() {
+    // register modal component
+    Vue.component("modal", {
+        template: "#modal-template"
+    });
+
     new Vue({
         el: "#todo-list-container",
         data: {
-            items: [itemWithValues(0, "some", true)],
-            nextID: 1
+            items: [itemWithValues(0, "some", "", true)],
+            nextID: 1,
+            showModal: false,
+            newTodo: "",
+            newTodoDescription: ""
         },
         methods: {
-            add: function() {
-                this.items.push(itemWithValues(this.nextID++, "some", false));
-            },
             setDone: function(item) {
                 var index = this.items.indexOf(item);
                 this.items[index].done = !this.items[index].done;
@@ -17,15 +22,22 @@ window.onload = function() {
                 var index = this.items.indexOf(item);
                 console.log(index);
                 this.items.splice(index, 1);
+            },
+            addTodo: function() {
+                this.items.push(itemWithValues(this.nextID++, this.newTodo, this.newTodoDescription, false));
+                this.newTodo = "";
+                this.newTodoDescription = "";
+                this.showModal = false;
             }
         }
     });
 };
 
-function itemWithValues(id, label, done) {
+function itemWithValues(id, title, description, done) {
     return {
         id: id,
-        label: label,
+        title: title,
+        description: description,
         done: done
     };
 }
