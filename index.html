@@ -2,13 +2,20 @@
     <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
+    <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous"
+    />
+
     <script src="index.js"></script>
     <link rel="stylesheet" type="text/css" href="index.css" />
 </head>
 
 <body>
     <div id="todo-list-container">
-        <button v-on:click="add">Add</button>
+        <button type="button" class="btn btn-light add-button" v-on:click="add"></button><br /><br /><br />
         <!-- <button v-on:click="remove">Remove</button> -->
         <transition-group name="todo-list" tag="ul" class="todo-list">
             <li v-for="item in items" v-bind:key="item.id" v-on:click="remove(item)" class="todo-list-item">

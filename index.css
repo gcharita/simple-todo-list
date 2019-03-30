@@ -1,6 +1,14 @@
 #todo-list-container {
     margin: auto;
-    width: 50%;
+    width: 40%;
+}
+.add-button {
+    background-image: url("images/baseline-add-24px.svg");
+    background-size: 100%;
+    float: right;
+    border-radius: 0px;
+    height: 50px;
+    width: 50px;
 }
 .todo-list {
     list-style-type: none;
