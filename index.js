@@ -7,24 +7,43 @@ window.onload = function() {
     new Vue({
         el: "#todo-list-container",
         data: {
-            items: [itemWithValues(0, "some", "", true)],
-            nextID: 1,
+            items: [],
+            nextID: 0,
             showModal: false,
             todoTitle: "",
             todoDescription: "",
             todoID: -1
         },
+        mounted() {
+            if (localStorage.getItem("todo-items")) {
+                try {
+                    this.items = JSON.parse(localStorage.getItem("todo-items"));
+
+                    if (this.items.length != 0) {
+                        var ids = this.items.map(item => item.id);
+                        this.nextID = Math.max.apply(null, ids) + 1;
+                    }
+                } catch (e) {
+                    localStorage.removeItem("todo-items");
+                }
+            }
+        },
+        watch: {
+            items() {
+                this.saveItems();
+            }
+        },
         methods: {
-            setDone: function(item) {
+            setDone(item) {
                 var index = this.items.indexOf(item);
                 this.items[index].done = !this.items[index].done;
+                this.saveItems();
             },
-            remove: function(item) {
+            remove(item) {
                 var index = this.items.indexOf(item);
-                console.log(index);
                 this.items.splice(index, 1);
             },
-            addUpdateTodo: function() {
+            addUpdateTodo() {
                 if (this.todoID == -1) {
                     this.items.push(itemWithValues(this.nextID++, this.todoTitle, this.todoDescription, false));
                 } else {
@@ -34,33 +53,38 @@ window.onload = function() {
                             item.description = this.todoDescription;
                         }
                     });
+                    this.saveItems();
                 }
                 this.clearCurrentTodo();
                 this.showModal = false;
             },
-            openModal: function(item) {
+            openModal(item) {
                 this.todoTitle = item.title;
                 this.todoDescription = item.description;
                 this.todoID = item.id;
                 this.showModal = true;
             },
-            closeModal: function() {
+            closeModal() {
                 this.clearCurrentTodo();
                 this.showModal = false;
             },
-            removeDone: function() {
+            removeDone() {
                 this.items = this.items.filter(function(item) {
                     return !item.done;
                 });
             },
-            clearCurrentTodo: function() {
+            clearCurrentTodo() {
                 this.todoTitle = "";
                 this.todoDescription = "";
                 this.todoID = -1;
+            },
+            saveItems() {
+                const parsed = JSON.stringify(this.items);
+                localStorage.setItem("todo-items", parsed);
             }
         },
         computed: {
-            hasDoneItems: function() {
+            hasDoneItems() {
                 var returnValue = false;
                 this.items.forEach(item => {
                     if (item.done) {
