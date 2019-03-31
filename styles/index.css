@@ -13,7 +13,7 @@ body {
     width: 40%;
 }
 .add-button {
-    background-image: url("images/baseline-add-24px.svg");
+    background-image: url("../images/baseline-add-24px.svg");
     background-color: transparent;
     border-color: transparent;
     background-size: 100%;
