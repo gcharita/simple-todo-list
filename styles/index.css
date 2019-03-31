@@ -18,7 +18,7 @@ body {
     border-color: transparent;
     background-size: 100%;
     float: right;
-    border-radius: 0px;
+    border-radius: 5px;
     height: 50px;
     width: 50px;
 }
@@ -71,4 +71,14 @@ body {
 .todo-list-item {
     font-size: 30px;
     font-weight: bold;
+}
+.edit-button {
+    background-image: url("../images/baseline-edit-24px.svg");
+    background-color: transparent;
+    border-color: transparent;
+    background-size: 100%;
+    float: right;
+    border-radius: 5px;
+    height: 43px;
+    width: 43px;
 }

@@ -11,7 +11,8 @@ window.onload = function() {
             nextID: 1,
             showModal: false,
             todoTitle: "",
-            todoDescription: ""
+            todoDescription: "",
+            todoID: -1
         },
         methods: {
             setDone: function(item) {
@@ -23,16 +24,33 @@ window.onload = function() {
                 console.log(index);
                 this.items.splice(index, 1);
             },
-            addTodo: function() {
-                this.items.push(itemWithValues(this.nextID++, this.todoTitle, this.todoDescription, false));
+            addUpdateTodo: function() {
+                if (this.todoID == -1) {
+                    this.items.push(itemWithValues(this.nextID++, this.todoTitle, this.todoDescription, false));
+                } else {
+                    this.items.forEach(item => {
+                        if (item.id == this.todoID) {
+                            item.title = this.todoTitle;
+                            item.description = this.todoDescription;
+                        }
+                    });
+                }
                 this.todoTitle = "";
                 this.todoDescription = "";
+                this.todoID = -1;
                 this.showModal = false;
             },
             openModal: function(item) {
                 this.todoTitle = item.title;
                 this.todoDescription = item.description;
+                this.todoID = item.id;
                 this.showModal = true;
+            },
+            closeModal: function() {
+                this.todoTitle = "";
+                this.todoDescription = "";
+                this.todoID = -1;
+                this.showModal = false;
             }
         }
     });

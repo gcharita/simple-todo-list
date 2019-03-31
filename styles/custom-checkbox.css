@@ -1,6 +1,5 @@
 /* Customize the label (the container) */
 .checkbox-container {
-    display: block;
     position: relative;
     padding-left: 35px;
     margin-bottom: 12px;
@@ -10,6 +9,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    margin-right: 43px;
 }
 /* Hide the browser's default checkbox */
 .checkbox-container input {

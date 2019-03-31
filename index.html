@@ -34,13 +34,13 @@
         <button type="button" class="btn btn-light add-button" @click="showModal = true"></button><br /><br /><br />
 
         <!-- use the modal component, pass in the prop -->
-        <modal v-if="showModal" @close="showModal = false">
+        <modal v-if="showModal" @close="closeModal">
             <!--
                 you can use custom content here to overwrite
                 default content
             -->
             <div slot="model-content">
-                <form id="todo=item-form" @submit.prevent="addTodo">
+                <form id="todo=item-form" @submit.prevent="addUpdateTodo">
                     <div class="field">
                         <label class="field-label">Title</label><br />
                         <input type="text" class="title-input" name="todo-title" v-model="todoTitle" />
@@ -53,8 +53,11 @@
                             v-model="todoDescription"
                         ></textarea>
                     </div>
-                    <div class="field has-text-right add-todo-container">
+                    <div v-if="todoID == -1" class="field has-text-right add-todo-container">
                         <button type="submit" class="btn btn-primary add-todo-button">add</button>
+                    </div>
+                    <div v-else class="field has-text-right add-todo-container">
+                        <button type="submit" class="btn btn-primary add-todo-button">update</button>
                     </div>
                 </form>
             </div>
@@ -62,12 +65,7 @@
 
         <!-- <button v-on:click="remove">Remove</button> -->
         <transition-group name="todo-list" tag="ul" class="todo-list">
-            <li
-                v-for="item in items"
-                v-bind:key="item.id"
-                v-on:dblclick.native="openModal(item)"
-                class="todo-list-item"
-            >
+            <li v-for="item in items" v-bind:key="item.id" class="todo-list-item">
                 <span v-if="item.done">
                     <label class="checkbox-container">
                         <del> {{ item.title }}</del>
@@ -82,6 +80,7 @@
                         <span class="checkmark"></span>
                     </label>
                 </span>
+                <button type="button" class="btn btn-light edit-button" @click="openModal(item)"></button>
             </li>
         </transition-group>
     </div>
