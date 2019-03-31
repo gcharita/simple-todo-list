@@ -63,7 +63,6 @@
             </div>
         </modal>
 
-        <!-- <button v-on:click="remove">Remove</button> -->
         <transition-group name="todo-list" tag="ul" class="todo-list">
             <li v-for="item in items" v-bind:key="item.id" class="todo-list-item">
                 <span v-if="item.done">
@@ -80,6 +79,7 @@
                         <span class="checkmark"></span>
                     </label>
                 </span>
+                <button type="button" class="btn btn-light delete-button" @click="remove(item)"></button>
                 <button type="button" class="btn btn-light edit-button" @click="openModal(item)"></button>
             </li>
         </transition-group>

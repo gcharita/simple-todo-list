@@ -10,7 +10,7 @@ body {
 }
 #todo-list-container {
     margin: auto;
-    width: 40%;
+    width: 50%;
 }
 .add-button {
     background-image: url("../images/baseline-add-24px.svg");
@@ -78,7 +78,17 @@ body {
     border-color: transparent;
     background-size: 100%;
     float: right;
-    margin-top: 0px;
+    border-radius: 5px;
+    margin-right: 5px;
+    height: 43px;
+    width: 43px;
+}
+.delete-button {
+    background-image: url("../images/baseline-delete-24px.svg");
+    background-color: transparent;
+    border-color: transparent;
+    background-size: 100%;
+    float: right;
     border-radius: 5px;
     height: 43px;
     width: 43px;
