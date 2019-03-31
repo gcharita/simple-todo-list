@@ -10,8 +10,8 @@ window.onload = function() {
             items: [itemWithValues(0, "some", "", true)],
             nextID: 1,
             showModal: false,
-            newTodo: "",
-            newTodoDescription: ""
+            todoTitle: "",
+            todoDescription: ""
         },
         methods: {
             setDone: function(item) {
@@ -24,10 +24,15 @@ window.onload = function() {
                 this.items.splice(index, 1);
             },
             addTodo: function() {
-                this.items.push(itemWithValues(this.nextID++, this.newTodo, this.newTodoDescription, false));
-                this.newTodo = "";
-                this.newTodoDescription = "";
+                this.items.push(itemWithValues(this.nextID++, this.todoTitle, this.todoDescription, false));
+                this.todoTitle = "";
+                this.todoDescription = "";
                 this.showModal = false;
+            },
+            openModal: function(item) {
+                this.todoTitle = item.title;
+                this.todoDescription = item.description;
+                this.showModal = true;
             }
         }
     });

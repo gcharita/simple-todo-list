@@ -4,9 +4,9 @@
     <!-- template for the modal component -->
     <script type="text/x-template" id="modal-template">
         <transition name="modal">
-          <div class="modal-mask">
+          <div class="modal-mask" @click="$emit('close')">
             <div class="modal-wrapper">
-              <div class="modal-container">
+              <div class="modal-container" v-on:click.stop>
                   <slot name="model-content">
                     default content
                   </slot>
@@ -41,17 +41,20 @@
             -->
             <div slot="model-content">
                 <form id="todo=item-form" @submit.prevent="addTodo">
-                    <h3>Create todo</h3>
                     <div class="field">
-                        <label class="label">Title</label><br />
-                        <input type="text" class="input" name="name" v-model="newTodo" />
+                        <label class="field-label">Title</label><br />
+                        <input type="text" class="title-input" name="todo-title" v-model="todoTitle" />
                     </div>
                     <div class="field">
-                        <label class="label">Description</label><br />
-                        <input type="text" class="input" name="email" v-model="newTodoDescription" />
+                        <label class="field-label">Description</label><br />
+                        <textarea
+                            class="description-input"
+                            name="todo-description"
+                            v-model="todoDescription"
+                        ></textarea>
                     </div>
-                    <div class="field has-text-right">
-                        <button type="submit" class="button is-danger">Submit</button>
+                    <div class="field has-text-right add-todo-container">
+                        <button type="submit" class="btn btn-primary add-todo-button">add</button>
                     </div>
                 </form>
             </div>
@@ -59,7 +62,12 @@
 
         <!-- <button v-on:click="remove">Remove</button> -->
         <transition-group name="todo-list" tag="ul" class="todo-list">
-            <li v-for="item in items" v-bind:key="item.id" class="todo-list-item">
+            <li
+                v-for="item in items"
+                v-bind:key="item.id"
+                v-on:dblclick.native="openModal(item)"
+                class="todo-list-item"
+            >
                 <span v-if="item.done">
                     <label class="checkbox-container">
                         <del> {{ item.title }}</del>
