@@ -35,9 +35,7 @@ window.onload = function() {
                         }
                     });
                 }
-                this.todoTitle = "";
-                this.todoDescription = "";
-                this.todoID = -1;
+                this.clearCurrentTodo();
                 this.showModal = false;
             },
             openModal: function(item) {
@@ -47,10 +45,13 @@ window.onload = function() {
                 this.showModal = true;
             },
             closeModal: function() {
+                this.clearCurrentTodo();
+                this.showModal = false;
+            },
+            clearCurrentTodo: function() {
                 this.todoTitle = "";
                 this.todoDescription = "";
                 this.todoID = -1;
-                this.showModal = false;
             }
         }
     });
