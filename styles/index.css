@@ -12,6 +12,16 @@ body {
     margin: auto;
     width: 50%;
 }
+.clear-button {
+    background-image: url("../images/baseline-clear_all-24px.svg");
+    background-color: transparent;
+    border-color: transparent;
+    background-size: 100%;
+    float: left;
+    border-radius: 5px;
+    height: 50px;
+    width: 50px;
+}
 .add-button {
     background-image: url("../images/baseline-add-24px.svg");
     background-color: transparent;

@@ -48,10 +48,26 @@ window.onload = function() {
                 this.clearCurrentTodo();
                 this.showModal = false;
             },
+            removeDone: function() {
+                this.items = this.items.filter(function(item) {
+                    return !item.done;
+                });
+            },
             clearCurrentTodo: function() {
                 this.todoTitle = "";
                 this.todoDescription = "";
                 this.todoID = -1;
+            }
+        },
+        computed: {
+            hasDoneItems: function() {
+                var returnValue = false;
+                this.items.forEach(item => {
+                    if (item.done) {
+                        returnValue = true;
+                    }
+                });
+                return returnValue;
             }
         }
     });

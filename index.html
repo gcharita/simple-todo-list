@@ -31,6 +31,7 @@
 
 <body>
     <div id="todo-list-container">
+        <button v-if="hasDoneItems" type="button" class="btn btn-light clear-button" @click="removeDone"></button>
         <button type="button" class="btn btn-light add-button" @click="showModal = true"></button><br /><br /><br />
 
         <!-- use the modal component, pass in the prop -->
