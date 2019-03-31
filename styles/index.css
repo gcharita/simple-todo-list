@@ -72,11 +72,11 @@ body {
 }
 .todo-list-enter {
     opacity: 0;
-    transform: translateX(30px);
+    transform: translateX(100px);
 }
 .todo-list-leave-to {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateX(-100px);
 }
 .todo-list-item {
     font-size: 25px;
