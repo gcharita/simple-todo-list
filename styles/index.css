@@ -78,9 +78,15 @@ body {
     opacity: 0;
     transform: translateX(-100px);
 }
-.todo-list-item {
+.todo-list-table {
+    width: 100%;
+}
+.todo-list-label {
     font-size: 25px;
     font-weight: bold;
+}
+.todo-list-buttons-container {
+    width: 91px;
 }
 .edit-button {
     background-image: url("../images/baseline-edit-24px.svg");
@@ -93,6 +99,11 @@ body {
     height: 43px;
     width: 43px;
 }
+.add-button:hover,
+.edit-button:hover {
+    background-color: #2196f3;
+    border-color: #2196f3;
+}
 .delete-button {
     background-image: url("../images/baseline-delete-24px.svg");
     background-color: transparent;
@@ -102,4 +113,9 @@ body {
     border-radius: 5px;
     height: 43px;
     width: 43px;
+}
+.clear-button:hover,
+.delete-button:hover {
+    background-color: red;
+    border-color: red;
 }

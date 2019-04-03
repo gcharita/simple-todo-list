@@ -69,23 +69,31 @@
         </modal>
 
         <transition-group name="todo-list" tag="ul" class="todo-list">
-            <li v-for="item in items" v-bind:key="item.id" class="todo-list-item">
-                <span v-if="item.done">
-                    <label class="checkbox-container">
-                        <del> {{ item.title }}</del>
-                        <input type="checkbox" v-on:click="setDone(item)" checked="checked" />
-                        <span class="checkmark"></span>
-                    </label>
-                </span>
-                <span v-else>
-                    <label class="checkbox-container">
-                        {{ item.title }}
-                        <input type="checkbox" v-on:click="setDone(item)" />
-                        <span class="checkmark"></span>
-                    </label>
-                </span>
-                <button type="button" class="btn btn-light delete-button" @click="remove(item)"></button>
-                <button type="button" class="btn btn-light edit-button" @click="openModal(item)"></button>
+            <li v-for="item in items" v-bind:key="item.id">
+                <table class="todo-list-table">
+                    <tr>
+                        <td>
+                            <span v-if="item.done">
+                                <label class="checkbox-container todo-list-label">
+                                    <del> {{ item.title }}</del>
+                                    <input type="checkbox" v-on:click="setDone(item)" checked="checked" />
+                                    <span class="checkmark"></span>
+                                </label>
+                            </span>
+                            <span v-else>
+                                <label class="checkbox-container todo-list-label">
+                                    {{ item.title }}
+                                    <input type="checkbox" v-on:click="setDone(item)" />
+                                    <span class="checkmark"></span>
+                                </label>
+                            </span>
+                        </td>
+                        <td class="todo-list-buttons-container">
+                            <button type="button" class="btn btn-light delete-button" @click="remove(item)"></button>
+                            <button type="button" class="btn btn-light edit-button" @click="openModal(item)"></button>
+                        </td>
+                    </tr>
+                </table>
             </li>
         </transition-group>
     </div>
